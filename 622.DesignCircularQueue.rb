@@ -46,25 +46,30 @@ class MyCircularQueue
     =end
         def initialize(k)
             @tail = @head = nil         # index
-            queue = Array.new(k,nil)    # array
+            queue = Array.new(k,nil)    # array of size k filled with nil values
             @size = k
         end
-    
     
     =begin
         :type value: Integer
         :rtype: Boolean
+        TODO: LEFT OFF HERE! 
     =end
         def en_queue(value)
-            result = false
-            if @tail == nil && @head == nil
+            rtype = false
+
+            #   1. If tail and head point to nothing then the queue was empty
+            #   2. If the tail and head point to the same value move tail up by one
+            #       2.1 Check the slot, if it is nil enqueue the value 
+            #       2.1 Otherwise return false (note: this might mean H == T) TODO
+            if !@tail && !@head
                 @tail = @head = 0
                 queue[@tail] = value
                 @tail +=1
                 return true
             end
             
-            return false if (@tail % @size) == @head
+            #   This means the 
             
             if (@tail % @size) + 1 == @head
               @tail += 1
@@ -105,7 +110,13 @@ class MyCircularQueue
         :rtype: Boolean
     =end
         def is_empty()
-            
+            rtype = true
+
+            # Only empty with both are nil
+            rtype = false if !@tail && !@head 
+
+            # Remember to reset the @head and @ tail when dequque is called
+            rtype
         end
     
     
@@ -113,7 +124,18 @@ class MyCircularQueue
         :rtype: Boolean
     =end
         def is_full()
+            rtype = false
+
+            # Check if empty
+            return false if is_empty() 
             
+            # Next tail 
+            nxt_tail = (@tail += 1) % @size 
+
+            # If next tail is same as head it's full
+            rtype = true if nxt_tail == @head
+
+            rtype
         end
     
     end
