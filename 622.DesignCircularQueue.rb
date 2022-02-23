@@ -41,88 +41,83 @@
 
 class MyCircularQueue
 
-    =begin
-        :type k: Integer
-    =end
+    # =begin
+    #     :type k: Integer
+    # =end
         def initialize(k)
             @tail = @head = nil         # index
-            queue = Array.new(k,nil)    # array of size k filled with nil values
+            @queue = Array.new(k,nil)    # array of size k filled with nil values
             @size = k
         end
     
-    =begin
-        :type value: Integer
-        :rtype: Boolean
-        TODO: LEFT OFF HERE! 
-    =end
+    # =begin
+    #     :type value: Integer
+    #     :rtype: Boolean
+    # =end
         def en_queue(value)
             rtype = false
 
-            #   1. If tail and head point to nothing then the queue was empty
-            #   2. If the tail and head point to the same value move tail up by one
-            #       2.1 Check the slot, if it is nil enqueue the value 
-            #       2.1 Otherwise return false (note: this might mean H == T) TODO
-            if !@tail && !@head
+            if is_full()
+              return false
+            end
+
+            if is_empty()
                 @tail = @head = 0
-                queue[@tail] = value
+                @queue[@tail] = value
                 @tail +=1
                 return true
             end
-            
-            #   This means the 
-            
-            if (@tail % @size) + 1 == @head
-              @tail += 1
-              return false
+
+            if !is_empty()
+                @tail += 1
+                @queue[@tail] = value
+                return true
             end
-            
-                
-                
             
         end
     
     
-    =begin
-        :rtype: Boolean
-    =end
+    # =begin
+    #     :rtype: Boolean
+    # =end
         def de_queue()
             
         end
     
     
-    =begin
-        :rtype: Integer
-    =end
+    # =begin
+    #     :rtype: Integer
+    # =end
         def front()
             
         end
     
     
-    =begin
-        :rtype: Integer
-    =end
+    # =begin
+    #     :rtype: Integer
+    # =end
         def rear()
             
         end
     
     
-    =begin
-        :rtype: Boolean
-    =end
+    # =begin
+    #     :rtype: Boolean
+    # =end
         def is_empty()
-            rtype = true
+            rtype = false
 
             # Only empty with both are nil
-            rtype = false if !@tail && !@head 
+            rtype = true if !@tail && !@head 
 
             # Remember to reset the @head and @ tail when dequque is called
             rtype
         end
     
     
-    =begin
-        :rtype: Boolean
-    =end
+    # =begin
+    #     :rtype: Boolean
+    # =end
         def is_full()
             rtype = false
 
@@ -141,10 +136,22 @@ class MyCircularQueue
     end
     
     # Your MyCircularQueue object will be instantiated and called as such:
-    obj = MyCircularQueue.new(k)
-    param_1 = obj.en_queue(value)
-    param_2 = obj.de_queue()
-    param_3 = obj.front()
-    param_4 = obj.rear()
-    param_5 = obj.is_empty()
-    param_6 = obj.is_full()
+    obj = MyCircularQueue.new(4)
+    
+    param_1 = obj.is_empty()
+    puts "Empty: #{param_1}"
+    param_2 = obj.is_full()
+    puts "Full: #{param_2}"
+    
+    param_3 = obj.en_queue(9)
+    param_3 = obj.en_queue(9)
+    param_3 = obj.en_queue(9)
+    param_3 = obj.en_queue(9)
+    param_3 = obj.en_queue(9)
+    puts "Enqueue: #{param_3}"
+    
+    param_1 = obj.is_empty()
+    puts "Empty: #{param_1}"
+    param_2 = obj.is_full()
+    puts "Full: #{param_2}"
+    
