@@ -22,24 +22,42 @@
 # [null, true, true, true, false, 3, true, true, true, 4]
 
 # Explanation
-# MyCircularQueue myCircularQueue = new MyCircularQueue(3);
-# myCircularQueue.enQueue(1); // return True
-# myCircularQueue.enQueue(2); // return True
-# myCircularQueue.enQueue(3); // return True
-# myCircularQueue.enQueue(4); // return False
-# myCircularQueue.Rear();     // return 3
-# myCircularQueue.isFull();   // return True
-# myCircularQueue.deQueue();  // return True
-# myCircularQueue.enQueue(4); // return True
-# myCircularQueue.Rear();     // return 4
+# myCircularQueue = MyCircularQueue.new(3);
+# myCircularQueue.en_queue(1); // return True
+# myCircularQueue.en_queue(2); // return True
+# myCircularQueue.en_queue(3); // return True
+# myCircularQueue.en_queue(4); // return False
+# myCircularQueue.rear();     // return 3
+# myCircularQueue.is_full();   // return True
+# myCircularQueue.de_queue();  // return True
+# myCircularQueue.en_queue(4); // return True
+# myCircularQueue.rear();     // return 4
 
 # Constraints:
 
 # 1 <= k <= 1000
 # 0 <= value <= 1000
-# At most 3000 calls will be made to enQueue, deQueue, Front, Rear, isEmpty, and isFull
+# At most 3000 calls will be made to en_queue, de_queue, Front, Rear, isEmpty, and is_full
 
+# Time: 
+# enqueue: O(1)
+# dequeue: O(1)
+# front: O(1)
+# rear: O(1)
+# isEmpty: O(1)
+# isFull: O(1)
+# Search: O(n)
+# If it's the last item it needs to go through all the items in the array
+#
+# Space: O(n)
+# Depends on the size allocaeed k
+#
+# Notes:
+# 
+#
 class MyCircularQueue
+
+    attr_accessor :tail, :queue, :head, :size 
 
     # =begin
     #     :type k: Integer
@@ -55,21 +73,17 @@ class MyCircularQueue
     #     :rtype: Boolean
     # =end
         def en_queue(value)
-            rtype = false
 
-            if is_full()
-              return false
-            end
+            return false if is_full()
 
             if is_empty()
                 @tail = @head = 0
                 @queue[@tail] = value
-                @tail +=1
                 return true
             end
 
             if !is_empty()
-                @tail += 1
+                @tail = (@tail + 1) % @size
                 @queue[@tail] = value
                 return true
             end
@@ -81,6 +95,27 @@ class MyCircularQueue
     #     :rtype: Boolean
     # =end
         def de_queue()
+
+            return false if is_empty()
+
+            # We remove an item in a full q
+            if is_full()
+                @queue[@head] = nil
+                @head = (@head + 1) % @size
+                return true
+            end
+            
+            # We remove an item just before empty => @head == @tail 
+            if @tail == @head 
+                @queue[@head] = nil
+                @head = @tail = nil # We set them to empty
+                return true
+            else
+                # We remove an item when the q is not full
+                @queue[@head] = nil
+                @head = (@head + 1) % @size
+                return true
+            end    
             
         end
     
@@ -89,15 +124,17 @@ class MyCircularQueue
     #     :rtype: Integer
     # =end
         def front()
-            
+            return -1 if is_empty()
+            return @queue[@head]
         end
-    
-    
-    # =begin
-    #     :rtype: Integer
-    # =end
+        
+        
+        # =begin
+        #     :rtype: Integer
+        # =end
         def rear()
-            
+            return -1 if is_empty()
+            return @queue[@tail]
         end
     
     
@@ -125,7 +162,7 @@ class MyCircularQueue
             return false if is_empty() 
             
             # Next tail 
-            nxt_tail = (@tail += 1) % @size 
+            nxt_tail = (@tail + 1) % @size 
 
             # If next tail is same as head it's full
             rtype = true if nxt_tail == @head
@@ -135,23 +172,27 @@ class MyCircularQueue
     
     end
     
-    # Your MyCircularQueue object will be instantiated and called as such:
-    obj = MyCircularQueue.new(4)
+    # # Your MyCircularQueue object will be instantiated and called as such:
+    # obj = MyCircularQueue.new(4)
     
-    param_1 = obj.is_empty()
-    puts "Empty: #{param_1}"
-    param_2 = obj.is_full()
-    puts "Full: #{param_2}"
-    
-    param_3 = obj.en_queue(9)
-    param_3 = obj.en_queue(9)
-    param_3 = obj.en_queue(9)
-    param_3 = obj.en_queue(9)
-    param_3 = obj.en_queue(9)
-    puts "Enqueue: #{param_3}"
-    
-    param_1 = obj.is_empty()
-    puts "Empty: #{param_1}"
-    param_2 = obj.is_full()
-    puts "Full: #{param_2}"
-    
+    # # empty full check
+    # param_1 = obj.is_empty()
+    # puts "Empty: #{param_1}"
+    # param_2 = obj.is_full()
+    # puts "Full: #{param_2}"
+    # puts 
+    # param_3 = obj.en_queue(9)
+    # param_3 = obj.en_queue(9)
+    # param_3 = obj.en_queue(9)
+    # param_3 = obj.en_queue(9)
+    # puts "Enqueue: #{param_3}"
+    # puts 
+    # # empty full check
+    # param_1 = obj.is_empty()
+    # puts "Empty: #{param_1}"
+    # param_2 = obj.is_full()
+    # puts "Full: #{param_2}"
+    # puts 
+    # # puts "Dequeue #{ obj.de_queue()}"
+
+    # load './622.DesignCircularQueue.rb'
