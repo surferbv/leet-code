@@ -53,7 +53,7 @@
 # Depends on the size allocaeed k
 #
 # Notes:
-# 
+# load './622.DesignCircularQueue.rb'
 #
 class MyCircularQueue
 
@@ -171,28 +171,3 @@ class MyCircularQueue
         end
     
     end
-    
-    # # Your MyCircularQueue object will be instantiated and called as such:
-    # obj = MyCircularQueue.new(4)
-    
-    # # empty full check
-    # param_1 = obj.is_empty()
-    # puts "Empty: #{param_1}"
-    # param_2 = obj.is_full()
-    # puts "Full: #{param_2}"
-    # puts 
-    # param_3 = obj.en_queue(9)
-    # param_3 = obj.en_queue(9)
-    # param_3 = obj.en_queue(9)
-    # param_3 = obj.en_queue(9)
-    # puts "Enqueue: #{param_3}"
-    # puts 
-    # # empty full check
-    # param_1 = obj.is_empty()
-    # puts "Empty: #{param_1}"
-    # param_2 = obj.is_full()
-    # puts "Full: #{param_2}"
-    # puts 
-    # # puts "Dequeue #{ obj.de_queue()}"
-
-    # load './622.DesignCircularQueue.rb'
