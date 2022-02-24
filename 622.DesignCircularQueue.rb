@@ -39,7 +39,7 @@
 # 0 <= value <= 1000
 # At most 3000 calls will be made to en_queue, de_queue, Front, Rear, isEmpty, and is_full
 
-# Time: 
+# Time: O(1)
 # enqueue: O(1)
 # dequeue: O(1)
 # front: O(1)
@@ -97,6 +97,12 @@ class MyCircularQueue
         def de_queue()
 
             return false if is_empty()
+            
+            if @size == 1
+                @queue[@head] = nil
+                @head = @tail = nil
+                return true
+            end
 
             # We remove an item in a full q
             if is_full()
