@@ -38,9 +38,14 @@
 # -105 <= val <= 105
 # At most 104 calls will be made to next.
 
-# Time:
-# Space:
+# Time: O(1)
+# The time it takes to enqueue and dequeue is constant time.
+# 
+# Space: O(n)
+# Where n is the size to initialize the queue window. 
+#
 # Notes:
+#
 class MovingAverage
 
     attr_accessor :queue, :size
@@ -52,6 +57,7 @@ class MovingAverage
             @next_call_count = 0
             @size = size
             @queue = []
+            @sum = 0.0
         end
     
     
@@ -65,15 +71,18 @@ class MovingAverage
             
             # First add the item to the queue
             if @next_call_count < @size
+                @sum += val
                 @queue.unshift(val)
             else
-                @queue.pop()
+                old_val = @queue.pop()
+                @sum -= old_val
+                @sum += val
                 @queue.unshift(val)
             end
 
             @next_call_count += 1 if @next_call_count < @size
 
-            return @queue.sum(0.0) / @next_call_count
+            return @sum / @next_call_count
             
         end
     
