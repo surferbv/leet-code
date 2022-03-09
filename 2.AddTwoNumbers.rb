@@ -8,60 +8,12 @@
 #         @next = _next
 #     end
 # end
-
 # @param {ListNode} l1
 # @param {ListNode} l2
 # @return {ListNode}
 
-#     problem:
-#         input:  
-#             two linked list representing two non-negative numbers
-#         output: 
-#             a linked list resulting in the sum of he two numbers
-#         note:
-#             digits are tored in reverse order 
-#                 i.e. 435 => [5,3,4]
-#             the numbers to not contain any leading zeros
-#                 i.e. 035 => not going to happen
-#             you can have input of un-equal size
-#                 i.e. [1,2,4] + [2,3]
-#             you can assume that you are always given two non-empty linked lists
-#         example:
-#             1.  input:
-#                 [2,4,3]
-#                 [5,6,4]
-
-#                 output:
-#                 [7,0,8]
-
-#                 explaination:
-#                 342 + 465 = 807
-            
-#             2.  input:
-#                 [0]
-
-#                 output:
-#                 [0]
-
-#                 explanation:
-#                 0 + 0 = 0
-
-#             3.  input:
-#                 [9,9,9,9,9,9,9]
-#                 [9,9,9,9]
-
-#                 output:
-#                 [8,9,9,9,0,0,0,1]
-#     algorithm:
-#     0.  create a new linked list to hold the result
-#     1.  create a variable to hold the carry
-#     1.1 create two pointers to traverse each l1ptr and l2ptr current starting at the head 
-#     2.  iterate node by node starting from the head
-#     adding the values of those nodes and storing them into the result linked list
-#     if we have a carry from the step above we store it and add it on the next iteration
-#         Q: What if the linked list that are not the same in size?
-#         Q: What if we have a carry at the end
-    
+# Problem:
+#       Givent two number represented as a linked list return the result after summing them as a linked list. 
 # Time: O(max(n,m))
 #       In the worst case we would have to treverse the longest list could be either l1 or l2 of size n or m.
 # Space:O(max(n,m))
@@ -111,3 +63,53 @@ def add_two_numbers(l1, l2)
     result.next
     
 end
+
+# Thinking:
+#     problem:
+#         input:  
+#             two linked list representing two non-negative numbers
+#         output: 
+#             a linked list resulting in the sum of he two numbers
+#         note:
+#             digits are tored in reverse order 
+#                 i.e. 435 => [5,3,4]
+#             the numbers to not contain any leading zeros
+#                 i.e. 035 => not going to happen
+#             you can have input of un-equal size
+#                 i.e. [1,2,4] + [2,3]
+#             you can assume that you are always given two non-empty linked lists
+#         example:
+#             1.  input:
+#                 [2,4,3]
+#                 [5,6,4]
+
+#                 output:
+#                 [7,0,8]
+
+#                 explaination:
+#                 342 + 465 = 807
+            
+#             2.  input:
+#                 [0]
+
+#                 output:
+#                 [0]
+
+#                 explanation:
+#                 0 + 0 = 0
+
+#             3.  input:
+#                 [9,9,9,9,9,9,9]
+#                 [9,9,9,9]
+
+#                 output:
+#                 [8,9,9,9,0,0,0,1]
+#     algorithm:
+#     0.  create a new linked list to hold the result
+#     1.  create a variable to hold the carry
+#     1.1 create two pointers to traverse each l1ptr and l2ptr current starting at the head 
+#     2.  iterate node by node starting from the head
+#     adding the values of those nodes and storing them into the result linked list
+#     if we have a carry from the step above we store it and add it on the next iteration
+#         Q: What if the linked list that are not the same in size?
+#         Q: What if we have a carry at the end
