@@ -30,7 +30,7 @@ def solution(a)
     # If there isn't 1 in the array   
     return 1 if !a.include?(1)
         
-    # Remove 0's, values <= 0, and values > a.length
+    # Replace 0's, values <= 0, and values > a.length with 1
     a.each_with_index do |num,i|
          if num <= 0 || num > a.length           
              a[i] = 1
