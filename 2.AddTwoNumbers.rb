@@ -62,11 +62,10 @@
 #         Q: What if the linked list that are not the same in size?
 #         Q: What if we have a carry at the end
     
-# Time: O(n)
-#       In the worst case we would have to treverse the longest list call it n and the shorter m
-#       so O(n) + O(m) n is greater thus O(n)
-# Space:O(n)
-#       We construct a new linked list which will be the longest of the lists sizes.    
+# Time: O(max(n,m))
+#       In the worst case we would have to treverse the longest list could be either l1 or l2 of size n or m.
+# Space:O(max(n,m))
+#       Which ever is the greater list of size n or m of list l1 or l2 respectively
 # Notes:
 #       Mess up on traversing the current pointer when setting it to the dummy head or initially what I called it was result
 #       If you want to treverse set current = dummyHead then update current to the new node by current.next = new_node
