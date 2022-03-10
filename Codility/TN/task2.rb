@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
     validates :age, numericality: { only_integer: true, greater_than: 0 }, allow_blank: true
     
     # phone_number attributes starts with '+1' and is followed by 10 digits if not met the error message should be "sorry, only us phone numbers required"
-    validates :phone_number, format: { with: /^\+1[0-9]{10}$/g, message: 'Sorry, only US phone numbers are allowed' }
-
+    validates :phone_number, format: { with: /^\+1[0-9]{10}$/g, message: "Sorry, only US phone numbers are allowed"}
+    
     # password attribute has a length between 6 and 20 chars
     validates :password, length: { minimum: 6, maximum: 20 }, confirmation: true
 
