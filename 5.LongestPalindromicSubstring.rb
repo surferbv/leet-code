@@ -69,6 +69,8 @@ puts "#{longest_palindrome(s)} == bb"
 s = "eabcb"
 puts "#{longest_palindrome(s)} == bcb"
 
+s = "abcdbbfcba"
+
 
 
 =begin
