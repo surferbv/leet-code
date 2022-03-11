@@ -22,7 +22,7 @@ def longest_palindrome(s)
     while i < s_length - 1 
         window_length = s_length - (i + 1)
         
-        # From the left side
+        # Somewhere on the left side
         left_edge   = 0
         right_edge  = window_length - 1
         substring   = s[left_edge..right_edge]
@@ -33,7 +33,7 @@ def longest_palindrome(s)
         substring   = s[left_edge..right_edge]
         return substring if is_palindrome(substring)
         
-        # From the right side
+        # Somewhere on the right side
         right_edge  = s_length - 1
         left_edge   = i + 1
         substring   = s[left_edge..right_edge]
@@ -43,6 +43,14 @@ def longest_palindrome(s)
         left_edge   = left_edge - 1
         substring   = s[left_edge..right_edge]
         return substring if is_palindrome(substring)
+        
+        # Somewhere in the middle
+        left_edge   = i
+        right_edge  = i
+        substring   = s[left_edge..right_edge]
+        return substring if is_palindrome(substring)
+        
+
 
         i += 1
     end
@@ -70,6 +78,7 @@ s = "eabcb"
 puts "#{longest_palindrome(s)} == bcb"
 
 s = "abcdbbfcba"
+puts "#{longest_palindrome(s)} == bb"
 
 
 
