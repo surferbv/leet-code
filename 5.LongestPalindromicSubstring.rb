@@ -46,8 +46,6 @@ def longest_palindrome(s)
 
         i += 1
     end
-
-
 end
 
 def is_palindrome(s)
@@ -58,17 +56,18 @@ end
 s = "abcdef"
 puts longest_palindrome(s)
 
-# s = "babad"
-# puts longest_palindrome(s)
+s = "babad"
+puts "#{longest_palindrome(s)} == bab"
 
-# s = "cbbd"
-# puts longest_palindrome(s)
 
-# s = "bb"
-# puts longest_palindrome(s)
+s = "cbbd"
+puts "#{longest_palindrome(s)} == bb"
 
-# s = "eabcb"
-# puts longest_palindrome(s)
+s = "bb"
+puts "#{longest_palindrome(s)} == bb"
+
+s = "eabcb"
+puts "#{longest_palindrome(s)} == bcb"
 
 
 
