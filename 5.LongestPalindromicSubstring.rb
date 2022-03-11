@@ -37,20 +37,20 @@ def longest_palindrome(s)
         
         # from the back
         right_edge  = s_length - 1
-        left_edge   = i 
+        left_edge   = i + 1
         substring   = s[left_edge..right_edge]
-        return substring if is_palindrome(substring)
+        puts "1 right: #{substring}"
+        # return substring if is_palindrome(substring)
         
         right_edge  = s_length - 2
-        left_edge   = i - 1
+        left_edge   = left_edge - 1
         substring   = s[left_edge..right_edge]
-        return substring if is_palindrome(substring)
+        puts "2 right: #{substring}"
+        # return substring if is_palindrome(substring)
+        puts
 
         i += 1
     end
-
-    j = 0
-    while 
 
 
 end
@@ -61,19 +61,19 @@ end
 
 # Testing
 s = "abcdef"
-puts longest_palindrome(s)
+longest_palindrome(s)
 
-s = "babad"
-puts longest_palindrome(s)
+# s = "babad"
+# puts longest_palindrome(s)
 
-s = "cbbd"
-puts longest_palindrome(s)
+# s = "cbbd"
+# puts longest_palindrome(s)
 
-s = "bb"
-puts longest_palindrome(s)
+# s = "bb"
+# puts longest_palindrome(s)
 
-s = "eabcb"
-puts longest_palindrome(s)
+# s = "eabcb"
+# puts longest_palindrome(s)
 
 
 
