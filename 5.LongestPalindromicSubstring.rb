@@ -16,30 +16,23 @@ def longest_palindrome(s)
     left_edge       = 0
     right_edge      = 0
 
-    return s[0] if s_length <= 2
+    return s if is_palindrome(s)
     
-    puts "Just print the substrings first..."
     i = 0
     while i < s_length - 1 
         window_length = s_length - (i + 1)
         
+        # compare new right edge
         left_edge = 0
         right_edge = window_length - 1
         substring = s[left_edge..right_edge]
+        return substring if is_palindrome(substring)
         
-        puts "Window length: #{window_length}"
-        puts "i: #{i}"
-        puts "1: #{substring}"
-        puts "is palindrome? #{is_palindrome(substring)}"
-        
+        # compare new left edge
         left_edge = 1
         right_edge = window_length
         substring = s[left_edge..right_edge]
-        
-        puts "2: #{substring}"
-        puts "is palindrome? #{is_palindrome(substring)}"
-        
-        puts
+        return substring if is_palindrome(substring)
 
         i += 1
     end
@@ -51,9 +44,18 @@ def is_palindrome(s)
     return s == s.reverse
 end
 
+# Testing
 s = "abcdef"
+puts longest_palindrome(s)
 
-longest_palindrome(s)
+s = "babad"
+puts longest_palindrome(s)
+
+s = "cbbd"
+puts longest_palindrome(s)
+
+s = "bb"
+puts longest_palindrome(s)
 
 =begin
 Process:
