@@ -22,20 +22,35 @@ def longest_palindrome(s)
     while i < s_length - 1 
         window_length = s_length - (i + 1)
         
+        # from the front 
         # compare new right edge
-        left_edge = 0
-        right_edge = window_length - 1
-        substring = s[left_edge..right_edge]
+        left_edge   = 0
+        right_edge  = window_length - 1
+        substring   = s[left_edge..right_edge]
         return substring if is_palindrome(substring)
         
         # compare new left edge
-        left_edge = 1
-        right_edge = window_length
-        substring = s[left_edge..right_edge]
+        left_edge   = 1
+        right_edge  = window_length
+        substring   = s[left_edge..right_edge]
+        return substring if is_palindrome(substring)
+        
+        # from the back
+        right_edge  = s_length - 1
+        left_edge   = i 
+        substring   = s[left_edge..right_edge]
+        return substring if is_palindrome(substring)
+        
+        right_edge  = s_length - 2
+        left_edge   = i - 1
+        substring   = s[left_edge..right_edge]
         return substring if is_palindrome(substring)
 
         i += 1
     end
+
+    j = 0
+    while 
 
 
 end
@@ -56,6 +71,11 @@ puts longest_palindrome(s)
 
 s = "bb"
 puts longest_palindrome(s)
+
+s = "eabcb"
+puts longest_palindrome(s)
+
+
 
 =begin
 Process:
